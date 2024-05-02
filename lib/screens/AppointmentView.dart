@@ -38,6 +38,7 @@ class AppointmentView extends StatelessWidget {
               // Add your logout logic here
               BlocProvider.of<ApplicationBloc>(context).add(LogoutEvent());
             },
+            tooltip: 'logout',
           ),
         ],
       ),
@@ -230,7 +231,10 @@ class AppointmentView extends StatelessWidget {
     } else {
       return
           //  Text("no data");
-          Center(child: NoDataDisplay(errorMessage: "Select any other date"));
+          Center(
+              child: NoDataDisplay(
+                  errorMessage:
+                      "No schedules available for the selected date"));
     }
   }
 }

@@ -14,7 +14,7 @@ class NoDataDisplay extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Lottie.asset(
-          'assets/image/Animation - 1708511109868.json',
+          'assets/image/nodata.json',
           width: 150,
           height: 150,
         ),
