@@ -37,10 +37,10 @@ class ScheduleCardWidget extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 1.6,
-                    color: getGradientColor(schedule.type)
-                        .headerGradient
-                        .colors[0],
+                    // width: MediaQuery.of(context).size.width / 1.6,
+                    // color: getGradientColor(schedule.type)
+                    //     .headerGradient
+                    //     .colors[0],
                     padding: EdgeInsets.all(10.0),
                     child: Row(
                       children: <Widget>[

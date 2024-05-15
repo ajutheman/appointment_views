@@ -46,38 +46,17 @@ class App extends StatelessWidget {
           return MedicoplusErrorPage(context, state);
         } else if (state is NoInternetState) {
           return NoInternetPage();
-        }
-        // else if (state is LoginPageState)
-        // {
-        //   return Loginpage(context);
-        // }
-        else if (state is LoginPageState) {
-          // print("object");
+        } else if (state is LoginPageState) {
           return Loginpage(context, "");
-          // appointmentView(context, state);
-          // test();
-          // ConnectionPage(context);
         } else if (state is LoginErrorState) {
-          // print("object");
           return Loginpage(context, state.errorMessage);
-          // appointmentView(context, state);
-          // test();
-          // ConnectionPage(context);
         } else if (state is ShedulerErrorState) {
-          return
-              // Center(child: CircularProgressIndicator());
-              NoDataDisplay(errorMessage: state.errorMessage);
+          return NoDataDisplay(errorMessage: state.errorMessage);
         } else if (state is ShedulerViewState) {
-          return
-              // Center(child: CircularProgressIndicator());
-              AppointmentView(state.Shedules, state.doctors, context,
-                  state.EmpDocNo, state.SelectedDate);
+          return AppointmentView(state.Shedules, state.doctors, context,
+              state.EmpDocNo, state.SelectedDate);
         } else {
-          return const Scaffold(body: LoadingIndicator()
-              //   Center(
-              // child: CircularProgressIndicator(),
-              // ),
-              );
+          return const Scaffold(body: LoadingIndicator());
         }
       },
     );

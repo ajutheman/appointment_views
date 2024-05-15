@@ -14,10 +14,8 @@ class Loginpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-    final TextEditingController userIdController =
-        TextEditingController(text: "sreenath");
-    final TextEditingController passwordController =
-        TextEditingController(text: "123");
+    final TextEditingController userIdController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -65,15 +63,6 @@ class Loginpage extends StatelessWidget {
                   }, "Login"),
                 ),
               ),
-              // const SizedBox(height: 15),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   children: [
-              //     MedicoControls.NormalLablelColor('Unable to Login ?   '),
-              //     MedicoControls.ContactButton(context),
-              //   ],
-              // ),
               const SizedBox(height: 15),
 
               Center(

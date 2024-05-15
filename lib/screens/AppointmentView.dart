@@ -49,9 +49,6 @@ class AppointmentView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15),
             child: Row(
               children: [
-                // Expanded(
-                //   child: MedicoControls.NormalText("Select Date"),
-                // ),
                 DropdownButton<DoctorModel>(
                   value: SelectedDoctorId != null
                       ? doctors.firstWhere(
@@ -83,39 +80,7 @@ class AppointmentView extends StatelessWidget {
               ],
             ),
           ),
-          // SizedBox(height: 2),
-          // Padding(
-          //   padding: const EdgeInsets.all(1.0),
-          //   child: Row(
-          //     children: [
-          //       // DateSelectionButton(
-          //       //   onPressed: () =>
-          //       //       _selectDate(context, selectedDate, (newDate) {
-          //       //     // selectedDate = newDate;
-          //       //     // futureSchedules = fetchData(selectedDate, selectedDoctorId!);
-          //       //     BlocProvider.of<ApplicationBloc>(context)
-          //       //         .add(SearchScheduleEvent(newDate, SelectedDoctorId));
-          //       //   }),
-          //       //   selectedDate: selectedDate,
-          //       // ),
-          //       SizedBox(width: 90),
-          //       SearchButton(
-          //         onPressed: SelectedDoctorId != null && selectedDate != null
-          //             ? () async {
-          //                 try {
-          //                   BlocProvider.of<ApplicationBloc>(context).add(
-          //                       SearchScheduleEvent(
-          //                           selectedDate, SelectedDoctorId));
-          //                 } catch (e) {
-          //                   print('Error fetching data: $e');
-          //                 }
-          //               }
-          //             : null,
-          //         isEnabled: SelectedDoctorId != null && selectedDate != null,
-          //       ),
-          //     ],
-          //   ),
-          // ),
+
           SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -148,9 +113,6 @@ class AppointmentView extends StatelessWidget {
                         final date = selectedDate.add(Duration(days: index));
                         return GestureDetector(
                           onTap: () {
-                            // selectedDate = date;
-                            // BlocProvider.of<ApplicationBloc>(context)
-                            //     .add(SearchScheduleEvent(date, SelectedDoctorId));
                             var newDate = selectedDate.add(Duration(days: 1));
                             BlocProvider.of<ApplicationBloc>(applicationContext)
                                 .add(SearchScheduleEvent(
