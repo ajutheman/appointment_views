@@ -190,7 +190,8 @@ class AppointmentView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ScheduleCardWidget(schedule: Schedules[index]);
               }));
-    } else {
+    } else
+    {
       return
           //  Text("no data");
           Center(

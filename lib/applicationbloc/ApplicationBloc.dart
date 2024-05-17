@@ -92,7 +92,9 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
 
             if (loginResult.resultType == 0) {
               loginResp = loginResult;
-              selectedDate = DateTime.now().subtract(Duration(days: 1));
+              selectedDate = DateTime.now();
+              // .subtract(Duration(days: 1)
+              // );
               // DateTime(2024, 04, 27);
               doctorID = loginResp.userEmpDocNo;
               saveToLocal("defaultDoctor", doctorID);
@@ -115,6 +117,14 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
                 ));
               } else {
                 // Handle failure scenarios
+                // emit(LoginErrorState("no sheduler "));
+                // eidit for add admin login and no sadulues then come her
+                emit(ShedulerViewState(
+                  doctorsInBloc,
+                  schedulesnIBloc,
+                  selectedDate,
+                  doctorID,
+                ));
               }
             } else {
               emit(LoginErrorState(loginResult.message));
