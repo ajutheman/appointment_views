@@ -54,7 +54,8 @@ class Loginpage extends StatelessWidget {
                   child: MedicoControls.LoginButton(() {
                     applicationContext
                         .read<ApplicationBloc>()
-                        .add(LoginButtonPressed(
+                        .add(
+                          LoginButtonPressed(
                           ApplicationConfig.ClinicId,
                           userIdController.text,
                           passwordController.text,

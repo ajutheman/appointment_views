@@ -131,6 +131,7 @@ class ApplicationBloc extends Bloc<ApplicationEvent, ApplicationState> {
             }
           } catch (e) {
             // Handle exceptions
+            
           }
         });
 

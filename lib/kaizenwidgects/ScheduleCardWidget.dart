@@ -1,7 +1,10 @@
 import 'package:appointment_views/kaizenControls/Medcolors.dart';
 import 'package:appointment_views/kaizenControls/MedicoControls.dart';
 import 'package:appointment_views/models/PatientSchedule.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class ScheduleCardWidget extends StatelessWidget {
@@ -135,21 +138,20 @@ class ScheduleCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                MedicoControls.NormalTextCard(
-                  '${schedule.consultedDoctorName.split('|')[0] == "" ? 'Therapist Name' : 'Doctor Name'}: ${schedule.consultedDoctorName.replaceAll('|', '') ?? 'N/A'}',
-                )
+                Expanded(
+                  child: MedicoControls.NormalTextCard(
+                    '${schedule.consultedDoctorName.split('|')[0] == "" ? 'Therapist Name' : 'Doctor Name'}: ${schedule.consultedDoctorName.replaceAll('|', '') ?? 'N/A'}',
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 5),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: <Widget>[
-            //     MedicoControls.NormalTextCard(
-            //       'Treatment Name  :  ${schedule.date ?? 'N/A'}',
-            //     )
-            //   ],
-            // ),
-            // SizedBox(height: 15),
+            Row(
+              children: [
+                splitTextWithNewLine(schedule.treatmentName),
+              ],
+            ),
+            SizedBox(height: 15),
           ],
         );
       case 'Block':
@@ -172,5 +174,75 @@ class ScheduleCardWidget extends StatelessWidget {
       default:
         return Container();
     }
+  }
+
+  Widget splitTextWithNewLine(String text) {
+    if (text == '') {
+      return Text('No Treatments');
+    } else {
+      List<String> splitText = text.split('\$');
+      return CardRow(items: splitText);
+      // return Expanded(
+      //   child: ListView.builder(
+      //     itemCount: splitText.length,
+      //     itemBuilder: (context, index) {
+      //       return ListTile(
+      //         title: Text(splitText[index]),
+      //       );
+      //     },
+      //   ),
+      // );
+      // Column c = Column();
+      // for (int i = 0; i < splitText.length; i++) {
+      //   c.children.add(Text(splitText[i].toString()));
+      // }
+      // return c;
+    } //  text.replaceAll('\$', '\n');
+  }
+}
+
+////
+///
+class CardRow extends StatelessWidget {
+  final List<String> items;
+
+  CardRow({required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    // Ensure there are exactly 3 items, filling with empty strings if needed
+    final List<String> displayItems = List.from(items);
+    while (displayItems.length < items.length) {
+      displayItems.add('');
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: displayItems.map((item) {
+        return
+            //  MedicoControls.NormalNameTextCard(
+            //   item,
+            // );
+            Container(
+          // Card(
+          // shape: BorderRadius.all(Radius.circular(1)),
+          color: Colors.lightBlue,
+          margin: EdgeInsets.only(left: 4, bottom: 2),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: MedicoControls.NormalNameTextCard(
+              item,
+            ),
+            // Text(
+            //   item,
+            //   style: TextStyle(fontSize: 16),
+            //   textAlign: TextAlign.center,
+            // ),
+          ),
+          // );
+        );
+      }).toList(),
+    );
   }
 }
